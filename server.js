@@ -2,7 +2,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
-
+var fn = require('./app/routing/html-routes');
 var app = express();
 var PORT = process.env.PORT || 3000;
 
@@ -10,9 +10,11 @@ var PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//ROUTER
-require('./app/routing/api-routes.js')(app); 
-require('./app/routing/html-routes.js')(app);
+// //ROUTER
+
+fn.survey(app);
+fn.home(app);
+
 
 // Starts the server to begin listening
 app.listen(PORT, function () {
